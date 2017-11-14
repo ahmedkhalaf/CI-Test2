@@ -38,29 +38,11 @@ env:
 before_install:
  - git submodule update --init --recursive
 
-# Execute the build
 install:
- - git clone -b $BRANCH_N $REPO --recursive $BRANCH_N
- - cd $BRANCH_N
- - source set_env.sh
- - cd riscv-tools/
- - bash build.sh
- - cd riscv-gnu-toolchain
- - cd build/
- - ../configure --prefix=$RISCV
- - make linux -j 4
+ - git clone -b $BRANCH_N $REPO $BRANCH_N
 
 script:
- # Build RTL simulation
- - cd $TOP/vsim
- - make sim
- # Build RTL simulation with vcd
- - cd $TOP/vsim
- - make sim-debug
- # Run asm tests
- # Add . to PATH so that make finds it (will be changed)
- - export PATH=.:$PATH
- - make run-asm-tests
+ - time > log_test.txt
 
 #before_install:
 #- docker pull carlad/sinatra
