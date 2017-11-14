@@ -5,6 +5,7 @@ language: scala
 services:
   - docker
 addons:
+  artifacts: true
   apt:
    packages:
     # Dependencies from tutorial
