@@ -1,10 +1,19 @@
 sudo: required
 
-language: ruby
+language: scala
 
 services:
   - docker
 
+# Environment
+env:
+ global:
+  - VERILATOR_ROOT=$HOME/tools/verilator
+  - PATH=$VERILATOR_ROOT/bin:$PATH
+  - JOBS=4
+  - REPO=https://github.com/lowRISC/lowrisc-chip.git 
+  - BRANCH_N=ethernet-v0.5
+  
 before_install:
 - docker pull carlad/sinatra
 - docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
