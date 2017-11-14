@@ -13,12 +13,23 @@ env:
   - JOBS=4
   - REPO=https://github.com/lowRISC/lowrisc-chip.git 
   - BRANCH_N=ethernet-v0.5
-  
+
 before_install:
-- docker pull carlad/sinatra
-- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
-- docker ps -a
-- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
+ - git submodule update --init --recursive
+
+# Execute the build
+install:
+ - git clone -b $BRANCH_N $REPO --recursive $BRANCH_N
+ - cd $BRANCH_N
+ - source set_env.sh
+ - cd riscv-tools/
+ - bash build.sh
+ 
+#before_install:
+#- docker pull carlad/sinatra
+#- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
+#- docker ps -a
+#- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
 script:
 - bundle exec rake test
