@@ -4,6 +4,26 @@ language: scala
 
 services:
   - docker
+addons:
+  apt:
+   packages:
+    # Dependencies from tutorial
+    - autoconf
+    - automake
+    - autotools-dev
+    - curl
+    - libmpc-dev
+    - libmpfr-dev
+    - libgmp-dev
+    - gawk
+    - build-essential
+    - bison
+    - flex
+    - texinfo
+    - gperf
+    - libncurses5-dev
+    - libusb-1.0-0
+    - libboost-dev
 
 # Environment
 env:
