@@ -1,7 +1,6 @@
 sudo: required
 
-language: scala
-scala: 2.11.2
+language: ruby
 
 services:
   - docker
@@ -31,7 +30,7 @@ addons:
 env:
  global:
   - VERILATOR_ROOT=$TRAVIS_BUILD_DIR/tools/verilator
-  - RISCV=$TRAVIS_BUILD_DIR/riscv-tools-dir
+  - RISCV=$TRAVIS_BUILD_DIR/riscv-tools-$BRANCH_N
   - PATH=$VERILATOR_ROOT/bin:$PATH:$RISCV/bin
   - JOBS=4
 
