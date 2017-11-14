@@ -42,7 +42,7 @@ install:
  - git clone -b $BRANCH_N $REPO --recursive $BRANCH_N
  - cd $BRANCH_N
  - cd riscv-tools/
- - build.sh
+ - bash build.sh
 
 script:
  # Build RTL simulation
