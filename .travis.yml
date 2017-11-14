@@ -44,12 +44,28 @@ install:
  - source set_env.sh
  - cd riscv-tools/
  - bash build.sh
- 
+ - cd riscv-gnu-toolchain
+ - cd build/
+ - ../configure --prefix=$RISCV
+ - make linux -j 4
+
+script:
+ # Build RTL simulation
+ - cd $TOP/vsim
+ - make sim
+ # Build RTL simulation with vcd
+ - cd $TOP/vsim
+ - make sim-debug
+ # Run asm tests
+ # Add . to PATH so that make finds it (will be changed)
+ - export PATH=.:$PATH
+ - make run-asm-tests
+
 #before_install:
 #- docker pull carlad/sinatra
 #- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
 #- docker ps -a
 #- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
-script:
-- bundle exec rake test
+#script:
+#- bundle exec rake test
