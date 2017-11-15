@@ -46,7 +46,8 @@ install:
  - cd $BRANCH_N
  - git submodule update --init
  - cd emulator
- - make $TRAVIS_BUILD_DIR/generated-src/rocketchip.BOOMConfig.v CONFIG=BOOMConfig
+ - sed -i 's/clean:/verilog_only:$(verilog)\nclean:/g' Makefile
+ - make verilog_only CONFIG=BOOMConfig
  - cd ..
 
 #script:
