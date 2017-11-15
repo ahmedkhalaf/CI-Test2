@@ -41,13 +41,13 @@ before_install:
 # Execute the build
 install:
 # - git clone -b $BRANCH_N $REPO $BRANCH_N
- - cd $BRANCH_N
+# - cd $BRANCH_N
 # - git submodule update --init
 # - cd riscv-tools
- - mkdir -p $RISCV
- - time > $RISCV/test_log.txt
 # - git submodule update --init --recursive
 # - bash build.sh
+ - mkdir -p $RISCV
+ - time > $RISCV/test_log.txt
 
 #script:
  # Build RTL simulation
