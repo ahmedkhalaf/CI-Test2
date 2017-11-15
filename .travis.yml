@@ -6,6 +6,8 @@ services:
   - docker
 addons:
   artifacts: true
+   paths:
+    - $TRAVIS_BUILD_DIR/out
   apt:
    packages:
     # Dependencies from tutorial
@@ -25,6 +27,7 @@ addons:
     - libncurses5-dev
     - libusb-1.0-0
     - libboost-dev
+    - zip
 
 # Environment
 env:
@@ -43,10 +46,11 @@ install:
  - cd $BRANCH_N
  - git submodule update --init
  - cd riscv-tools
- - git submodule update --init --recursive
- - bash build.sh
+ - time > $RISCV/test_log.txt
+# - git submodule update --init --recursive
+# - bash build.sh
 
-script:
+#script:
  # Build RTL simulation
  # - cd ../emulator; make run CONFIG=BOOMConfig
 
@@ -56,5 +60,5 @@ script:
 #- docker ps -a
 #- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
-#script:
-#- bundle exec rake test
+script:
+ - zip -r $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip $RISCV
