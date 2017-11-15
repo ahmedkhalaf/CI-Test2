@@ -40,14 +40,14 @@ before_install:
 
 # Execute the build
 install:
-# - git clone -b $BRANCH_N $REPO $BRANCH_N
-# - cd $BRANCH_N
-# - git submodule update --init
-# - cd riscv-tools
-# - git submodule update --init --recursive
-# - bash build.sh
- - mkdir -p $RISCV
- - time > $RISCV/test_log.txt
+ - git clone -b $BRANCH_N $REPO $BRANCH_N
+ - cd $BRANCH_N
+ - git submodule update --init
+ - cd riscv-tools
+ - git submodule update --init --recursive
+ - bash build.sh
+# - mkdir -p $RISCV
+# - time > $RISCV/test_log.txt
 
 #script:
  # Build RTL simulation
@@ -61,4 +61,5 @@ install:
 
 script:
  - mkdir -p $TRAVIS_BUILD_DIR/out
- - zip -r $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip $RISCV/*
+ - cd $RISCV
+ - zip -r $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip /
