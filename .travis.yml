@@ -63,3 +63,5 @@ script:
  - mkdir -p $TRAVIS_BUILD_DIR/out
  - cd $RISCV
  - zip -r ../out/riscv-tools-$BRANCH_N.zip ./*
+ - ls ../out/*
+ - ls ../out/*.zip
