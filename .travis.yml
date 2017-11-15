@@ -47,7 +47,7 @@ install:
 # - git submodule update --init --recursive
 # - bash build.sh
  - mkdir -p $RISCV
- - time > $RISCV/test_log.txt
+ - git clone -b $BRANCH_N $REPO $RISCV
 
 #script:
  # Build RTL simulation
