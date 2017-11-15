@@ -32,7 +32,7 @@ addons:
 env:
  global:
   - RISCV=$TRAVIS_BUILD_DIR/riscv-tools-$BRANCH_N
-  - PATH=$VERILATOR_ROOT/bin:$PATH:$RISCV/bin
+  - PATH=$RISCV/bin:$PATH
 
 before_install:
  - git submodule update --init --recursive
@@ -46,7 +46,7 @@ install:
  - cd $BRANCH_N
  - git submodule update --init
  - cd emulator
- - make $VERILATOR_ROOT/generated-src/rocketchip.BOOMConfig.v CONFIG=BOOMConfig
+ - make $TRAVIS_BUILD_DIR/generated-src/rocketchip.BOOMConfig.v CONFIG=BOOMConfig
  - cd ..
 
 #script:
