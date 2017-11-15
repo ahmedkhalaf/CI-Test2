@@ -6,8 +6,6 @@ services:
   - docker
 addons:
   artifacts: true
-   paths:
-    - $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip
   apt:
    packages:
     # Dependencies from tutorial
