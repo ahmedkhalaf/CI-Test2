@@ -7,7 +7,7 @@ services:
 addons:
   artifacts: true
    paths:
-    - $TRAVIS_BUILD_DIR/out
+    - out
   apt:
    packages:
     # Dependencies from tutorial
