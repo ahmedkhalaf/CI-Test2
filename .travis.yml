@@ -7,7 +7,7 @@ services:
 addons:
   artifacts: true
    paths:
-    - out
+    - $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip
   apt:
    packages:
     # Dependencies from tutorial
