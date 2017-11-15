@@ -35,10 +35,11 @@ env:
   - PATH=$RISCV/bin:$PATH
 
 before_install:
+ - mkdir -p $TRAVIS_BUILD_DIR/out
  - git submodule update --init --recursive
- - wget "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/40/40.1/out/riscv-tools-boom.zip"
+ - wget -q "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/40/40.1/out/riscv-tools-boom.zip"
  - mkdir -p $RISCV
- - unzip riscv-tools-*.zip -d $RISCV
+ - unzip riscv-tools-*.zip -d $RISCV > $TRAVIS_BUILD_DIR/out/unzip_riscv-tools.txt
 
 # Execute the build
 install:
@@ -61,5 +62,4 @@ install:
 #- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
 script:
- - mkdir -p $TRAVIS_BUILD_DIR/out
- - zip -r ../out/emulator-$BRANCH_N.zip ./*
+ - zip -r ../out/emulator-$BRANCH_N.zip ./*  > $TRAVIS_BUILD_DIR/out/zip_emulator.txt
