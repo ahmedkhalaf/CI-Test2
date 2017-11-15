@@ -1,6 +1,7 @@
 sudo: required
 
-language: ruby
+language: scala
+scala: 2.11.2
 
 services:
   - docker
@@ -36,7 +37,7 @@ env:
 
 before_install:
  - git submodule update --init --recursive
- - wget "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/41/41.1/out/riscv-tools-ethernet-v0.5.zip"
+ - wget "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/40/40.1/out/riscv-tools-boom.zip"
  - mkdir -p $RISCV
  - unzip riscv-tools-*.zip -d $RISCV
 
@@ -45,7 +46,9 @@ install:
  - git clone -b $BRANCH_N $REPO $BRANCH_N
  - cd $BRANCH_N
  - git submodule update --init
- - cd emulator; make run CONFIG=BOOMConfig
+ - cd emulator
+ - make run CONFIG=BOOMConfig
+ - cd ..
 
 #script:
  # Build RTL simulation
