@@ -62,4 +62,4 @@ install:
 script:
  - mkdir -p $TRAVIS_BUILD_DIR/out
  - cd $RISCV
- - zip -r $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip .
+ - zip -r ../out/riscv-tools-$BRANCH_N.zip ./*
