@@ -60,4 +60,5 @@ install:
 #- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
 script:
+ - mkdir -p $TRAVIS_BUILD_DIR/out
  - zip -r $TRAVIS_BUILD_DIR/out/riscv-tools-$BRANCH_N.zip $RISCV
