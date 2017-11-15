@@ -30,24 +30,22 @@ addons:
 # Environment
 env:
  global:
-  - VERILATOR_ROOT=$TRAVIS_BUILD_DIR/tools/verilator
   - RISCV=$TRAVIS_BUILD_DIR/riscv-tools-$BRANCH_N
   - PATH=$VERILATOR_ROOT/bin:$PATH:$RISCV/bin
   - JOBS=4
 
 before_install:
  - git submodule update --init --recursive
+ - wget "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/41/41.1/out/riscv-tools-ethernet-v0.5.zip"
+ - mkdir -p $RISCV
+ - unzip riscv-tools-*.zip -d $RISCV
 
 # Execute the build
 install:
  - git clone -b $BRANCH_N $REPO $BRANCH_N
  - cd $BRANCH_N
  - git submodule update --init
- - cd riscv-tools
- - git submodule update --init --recursive
- - bash build.sh
-# - mkdir -p $RISCV
-# - git clone -b $BRANCH_N $REPO $RISCV
+ - cd emulator; make run CONFIG=BOOMConfig
 
 #script:
  # Build RTL simulation
@@ -61,5 +59,4 @@ install:
 
 script:
  - mkdir -p $TRAVIS_BUILD_DIR/out
- - cd $RISCV
- - zip -r ../out/riscv-tools-$BRANCH_N.zip ./*
+ - zip -r ../out/emulator-$BRANCH_N.zip ./*
