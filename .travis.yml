@@ -39,7 +39,7 @@ before_install:
  - git submodule update --init --recursive
  - wget -q "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/48/48.1/out/emulator-boom.zip"
  - mkdir -p $RISCV
- - unzip riscv-tools-*.zip -d ./ > $TRAVIS_BUILD_DIR/out/unzip_emulator.txt
+ - unzip emulator-boom.zip -d ./ > $TRAVIS_BUILD_DIR/out/unzip_emulator.txt
 
 # Execute the build
 install:
