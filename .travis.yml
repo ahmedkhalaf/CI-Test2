@@ -53,8 +53,7 @@ install:
  - unzip ../riscv-tools-*.zip -d $RISCV > $TRAVIS_BUILD_DIR/out/unzip_riscv-tools.txt
  - cd riscv-tools
  - cd riscv-gnu-toolchain
- - cd build
- - ../configure --prefix=$RISCV 
+ - ./configure --prefix=$RISCV --enable-multilib
  - make linux -j
  - cd ../..
 
