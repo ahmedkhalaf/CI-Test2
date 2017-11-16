@@ -40,15 +40,18 @@ before_install:
  - wget -q "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/40/40.1/out/riscv-tools-boom.zip"
  - mkdir -p $RISCV
  - unzip riscv-tools-*.zip -d $RISCV > $TRAVIS_BUILD_DIR/out/unzip_riscv-tools.txt
+ - wget -q "https://s3.amazonaws.com/ci-build-test/ahmedkhalaf/CI-Test2/48/48.1/out/emulator-boom.zip"
+ - unzip emulator-boom.zip -d ./$BRANCH_N > $TRAVIS_BUILD_DIR/out/unzip_emulator.txt
 
 # Execute the build
 install:
- - git clone -b $BRANCH_N $REPO $BRANCH_N
+# - git clone -b $BRANCH_N $REPO $BRANCH_N
  - cd $BRANCH_N
- - git submodule update --init
+# - git submodule update --init
  - cd emulator
  - sed -i 's/clean:/verilog_only:$(verilog)\nclean:/g' Makefile
- - make verilog_only CONFIG=BOOMConfig
+ - make verilog_only CONFIG=BOOMConfig -t
+ - make all CONFIG=BOOMConfig
  - cd ..
 
 #script:
@@ -62,4 +65,4 @@ install:
 #- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
 script:
- - zip -r ../out/emulator-$BRANCH_N.zip ./*  > $TRAVIS_BUILD_DIR/out/zip_emulator.txt
+ - zip -r ../out/emulator-bin-$BRANCH_N.zip ./*  > $TRAVIS_BUILD_DIR/out/zip_emulator-run.txt
