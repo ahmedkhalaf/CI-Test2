@@ -31,7 +31,10 @@ addons:
 # Environment
 env:
  global:
+ #temp: force parameters for lowRISC
   - $BRANCH_N=ethernet-v0.5
+  - $REPO=https://github.com/lowRISC/lowrisc-chip.git
+  
   - RISCV=$TRAVIS_BUILD_DIR/riscv-tools-$BRANCH_N
   - PATH=$RISCV/bin:$PATH
 
